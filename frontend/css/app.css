@@ -1,0 +1,19 @@
+.channel-form {
+  margin-bottom: 10px;
+}
+.channel-form.form-inline .form-group {
+    width:calc(100% - 128px);
+}
+.channel-form.form-inline .form-group input{
+    width:100%;
+}
+
+.message-form {
+  margin-bottom: 10px;
+}
+.message-form.form-inline .form-group {
+    width:calc(100% - 128px);
+}
+.message-form.form-inline .form-group input{
+    width:100%;
+}

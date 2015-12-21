@@ -8,11 +8,10 @@ var io = require('socket.io').listen(server);
 var channels = {};
 
 io.on('connection', function(socket) {
-  console.log(channels);
+  
   socket.emit('allChannels', channels);
   
   socket.on('message', function(data) {
-    console.log(data);
     channels[data.channel].push(data.message);
     io.to(data.channel).emit('message', data);
   });

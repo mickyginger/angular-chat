@@ -21,6 +21,8 @@ angular
       if(!$scope.channels[$scope.channel]) {
         socket.emit("createChannel", $scope.channel);
         $scope.currentChannel = $scope.channel;
+        $scope.channels[$scope.currentChannel] = [];
+        $scope.messages = $scope.channels[$scope.currentChannel];
         $scope.channel = "";
       }
     }
@@ -39,16 +41,17 @@ angular
     });
 
     socket.on('message', function(data) {
-      console.log("MSG RECEIVED!", data);
       $scope.$evalAsync(function() {
         $scope.channels[data.channel].push(data.message);
       });
     });
 
     socket.on('newChannel', function(name) {
-      $scope.$evalAsync(function() {
-        $scope.channels[name] = [];
-      });
+      if(!$scope.channels[name]) {
+        $scope.$evalAsync(function() {
+          $scope.channels[name] = [];
+        });
+      }
     });
 
   }]);
