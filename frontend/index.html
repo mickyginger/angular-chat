@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Angular Chat</title>
+  <!-- Socket.IO -->
+  <script src="./bower_components/socket.io-client/socket.io.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <!-- Modules -->
+  <script src="./js/app.js"></script>
+</head>
+<body ng-app="angularChat">
+  <main ng-controller="ChatController">
+    <div class="channels">
+      <form ng-submit="createChannel()">
+        <input ng-model="channel">
+        <button>Create Channel</button>
+      </form>
+      <a ng-repeat="(channel, messages) in channels track by $index" ng-click="showChannel(channel)">{{channel}}</a>
+    </div>
+    <div class="messages" ng-show="currentChannel">
+      <p ng-repeat="msg in messages track by $index">{{msg}}</p>
+      <form ng-submit="chat()">
+        <input ng-model="message">
+        <button>Send</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
